@@ -3,4 +3,12 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
+# foundry.toml
+
+[remappings]
+'@openzeppelin-contracts/contracts/' = 'lib/openzeppelin-contracts/contracts'
+'@chainlink/contracts/' = 'lib/chainlink/contracts'
+'@aave-v3-core/contracts'= 'lib/aave-v3-core/contracts'
+
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
