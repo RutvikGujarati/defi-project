@@ -4,18 +4,12 @@ pragma solidity ^0.8.20;
 import {IERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
 contract Swap is IERC20 {
-
     address public Person1;
     IERC20 public Token1;
     address public Person2;
     IERC20 public Token2;
 
-    constructor(
-        address _p1,
-        address _p2,
-        address _T1,
-        address _T2
-    ) {
+    constructor(address _p1, address _p2, address _T1, address _T2) {
         Token1 = IERC20(_T1);
         Token2 = IERC20(_T2);
         Person1 = _p1;
@@ -37,6 +31,8 @@ contract Swap is IERC20 {
         bool sent = token.transferFrom(sender, recipient, amount);
         require(sent, "Transfer not successful");
     }
+
+    // **Interfaces:
 
     // Implementing required functions from IERC20
     function totalSupply() external view override returns (uint256) {
@@ -61,5 +57,9 @@ contract Swap is IERC20 {
 
     function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {
         // Implement your logic for transferFrom
+    }
+
+    function getBalance(address _tokenAddress) external view returns (uint256) {
+        return IERC20(_tokenAddress).balanceOf(address(this));
     }
 }

@@ -9,7 +9,6 @@ contract Token is ERC20 {
     }
 }
 
-
 // t. hash 1)- 0x0e6c589e0575d4c93a36bf522af8770c4263000271c60cb186d4c6300bd5fadf
 // address - 0x406C2d31F4B61eA0C917F6C02e44aaC9bD10da52
 //from - 0x14093F94E3D9E59D1519A9ca6aA207f88005918c
