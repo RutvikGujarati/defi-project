@@ -8,22 +8,18 @@ import {IERC20} from "../lib/aave-v3-core/contracts/dependencies/openzeppelin/co
 contract FlashLoan is FlashLoanSimpleReceiverBase {
     address payable owner;
 
-    constructor(address _addressProvider)
-        FlashLoanSimpleReceiverBase(IPoolAddressesProvider(_addressProvider))
-    {
+    constructor(address _addressProvider) FlashLoanSimpleReceiverBase(IPoolAddressesProvider(_addressProvider)) {
         owner = payable(msg.sender);
     }
 
     /**
-        This function is called after your contract has received the flash loaned amount
+     * This function is called after your contract has received the flash loaned amount
      */
-    function executeOperation(
-        address asset,
-        uint256 amount,
-        uint256 premium,
-        address initiator,
-        bytes calldata params
-    ) external override returns (bool) {
+    function executeOperation(address asset, uint256 amount, uint256 premium, address initiator, bytes calldata params)
+        external
+        override
+        returns (bool)
+    {
         //
         // This contract now has the funds requested.
         // Your logic goes here.
@@ -48,13 +44,7 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
         bytes memory params = "";
         uint16 referralCode = 0;
 
-        POOL.flashLoanSimple(
-            receiverAddress,
-            asset,
-            amount,
-            params,
-            referralCode
-        );
+        POOL.flashLoanSimple(receiverAddress, asset, amount, params, referralCode);
     }
 
     function getBalance(address _tokenAddress) external view returns (uint256) {
@@ -67,10 +57,7 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
     }
 
     modifier onlyOwner() {
-        require(
-            msg.sender == owner,
-            "Only the contract owner can call this function"
-        );
+        require(msg.sender == owner, "Only the contract owner can call this function");
         _;
     }
 
